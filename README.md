@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# Rental Cost Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rental cost calculator is an app to calculate the cost of renting a car.
 
-## Available Scripts
+Due to lack of free gas prices APIs available I decided to use random number generator API that returns a random number form 3 to 5 for each request. This number is a fake representation of the gas price.
 
-In the project directory, you can run:
+After you choose a car you will be navigated to the calculator page with currently selected car information.
 
-### `yarn start`
+Car info like: price category, cost per day, average fuel consumption and number of cars available are required to properly calculate the rental cost.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Total cost consists of:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Base cost with fees = price/day x rental days x price category multiplier. If user has a little experience as a driver, then he/she is charged additional 20% of a base cost. Also If there are few vehicles available we charge another fee of 15% of a base cost,
 
-### `yarn test`
+- Fuel cost = (user's expected distance / 100km) x average car's fuel consumption per 100km x current gas price
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Netto cost = base cost with fees + fuel cost,
 
-### `yarn build`
+- Brutto cost = netto cost x 1.23.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+User has to pass additional information to properly calculate the rental cost such as:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- expected distance that user will travel by car,
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- since which year the user has held a driving license,
 
-### `yarn eject`
+- car pick-up date,
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- car drop-off date.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I also implemented a validation for these input fields.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Live
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Live-Build](https://car-rental-calculator.netlify.app)
